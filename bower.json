@@ -1,0 +1,8 @@
+{
+  "name": "presentation-liferay-mobile-sdk-for-mobile-developers",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages",
+    "font-awesome": "~4.2.0"
+  }
+}

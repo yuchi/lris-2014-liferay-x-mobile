@@ -1,0 +1,405 @@
+mixin slide(names, slideClasses)
+  if names
+    section(class=names+' '+slideClasses, data-bespoke-backdrop='backdrop ' + names.split(' ').map(function(name) { return 'backdrop--' + name; }).join(' '))
+      block
+  else
+    section
+      block
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Liferay &times; Mobile
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      +slide
+        h4 Pier Paolo <br> Ramon
+        #logo
+        h4: .socials
+          span <i class="fa fa-github-alt"></i> yuchi
+          span <i class="fa fa-twitter"></i> _pier
+
+      +slide('start')
+        h1 Liferay &times; Mobile
+
+      +slide
+        h1 Déjà vu
+
+      +slide('bruno')
+        h2 LRIS 2013
+
+      +slide
+        h2 Recap
+        ul
+          li UX, UX, UX!
+          li Nuove sfide
+
+      +slide('roadmap')
+        h2 ROADMAP
+        h3 Liferay Mobile SDK
+
+      +slide
+        h2 Q1 2014
+        table.rows
+          tr
+            td.icon: img(src="images/titanium.png")
+            th Titanium SDK
+            td SMC
+          tr
+            td.icon: i.fa.fa-android
+            th Android
+            td Liferay
+          tr
+            td.icon: i.fa.fa-apple
+            th iOS
+            td Liferay
+          tr
+            td.icon: i.fa.fa-windows
+            th Windows
+            td …
+
+      +slide
+        img.product(src="images/liferay-mobile-sdk.png")
+        h2 <small>Liferay</small> Mobile SDK
+        table.rows
+          tr
+            td.icon
+              i.fa.fa-android
+              i.fa.fa-apple
+            th.icon β
+            td Gennaio
+            td 2014
+          tr
+            td.icon
+              i.fa.fa-android
+              i.fa.fa-apple
+            th.icon GA
+            td Marzo
+            td 2014
+          tr.futures
+            td.icon: i.fa.fa-windows
+            th.icon ···
+            td Dicembre
+            td 2014
+        p: small <i class="fa fa-code-fork"></i> liferay/liferay-mobile-sdk
+
+      //
+        +slide
+          h2 <small>Autenticazione in</small> Java
+          pre: code.language-java.
+            Session session = new SessionImpl(
+              "http://10.0.2.2:8080",
+              "test@liferay.com", "test");
+
+        +slide
+          h2 <small>Invocazione in</small> Java
+          pre: code.language-java.
+            MBCategoryService service =
+              new MBCategoryService(session);
+
+            JSONArray categories =
+              service.getCategories(groupId, 0);
+
+        +slide
+          h2 <small>Autenticazione in</small> Objective-C
+          pre: code.language-objectivec.
+            LRSession *session = [[LRSession alloc]
+              initWithServer:@"http://localhost:8080"
+                    username:@"test@liferay.com"
+                    password:@"test"];
+
+        +slide
+          h2 <small>Definizione in</small> Objective-C
+          pre: code.language-objectivec.
+            LRMBCategoryService_v62 *service =
+              [[LRMBCategoryService_v62 alloc]
+                initWithSession:session];
+
+        +slide
+          h2 <small>Invocazione in</small> Objective-C
+          pre: code.language-objectivec.
+            NSError *error;
+            NSArray *entries = [service
+              getGroupEntriesWithGroupId: 1084
+                        parentCategoryId: 0
+                                   error: &error];
+
+      +slide
+        img.product(src="images/liferay-connector.png")
+        h2 <small>Liferay</small> Connector
+        table.rows
+          tr
+            td.icon
+              img(src="images/titanium.png")
+              span ⬢
+            th.icon β
+            td Marzo
+            td 2014
+          tr
+            td.icon
+              img(src="images/titanium.png")
+              span ⬢
+            th.icon 0.6.3
+            td Novembre
+            td 2014
+        p: small <i class="fa fa-code-fork"></i> smclab/liferay-connector
+
+      +slide
+        h2 <small>Autenticazione in</small>JavaScript
+        pre: code.language-javascript.
+          liferay.authenticate(
+            "http://10.0.2.2:8080", {
+              login: "test@liferay.com",
+              password: "test"
+            }, function (err, session) { /*...*/ });
+
+      +slide
+        h2 <small>Invocazione in</small>JavaScript
+        pre: code.language-javascript.
+          session.invoke({
+            '/mbcategory/get-categories': {
+              'groupId': groupId,
+              'parentCategoryId': 0
+            }
+          }, function (err, categories) { /*...*/ });
+
+      +slide
+        h2 Promises
+        pre: code.language-javascript.
+          session
+            .invoke({ /* ... */ })
+            .then(function (results) {
+              // On resolved values
+            });
+
+      +slide
+        h2 ES6 Coroutines <small>and destructuring</small>
+        pre: code.language-javascript.
+          import { authenticate }
+            from 'liferay-connector';
+          let { invoke } = yield authenticate(
+            "http://10.0.2.2:8080", {
+              login: "test@liferay.com",
+              password: "test"
+            });
+
+      +slide
+        pre: code.language-javascript.
+          let categories = yield invoke({
+            '/mbcategory/get-categories': {
+              'groupId': groupId,
+              'parentCategoryId': 0
+            }
+          });
+
+      +slide('overload')
+        h2 C# async/await<br>in JavaScript
+
+      +slide
+        .ios7-icon(style="background-image:url('images/liferay-forums.png');")
+        h2 <small>Liferay.com</small> Forums
+        table.rows
+          tr
+            th 1.0
+            td Giugno
+            td 2014
+          tr
+            th 2.1
+            td Novembre
+            td 2014
+        table.rows: tr
+          td: a.block(href="https://itunes.apple.com/app/liferay.com-forums/id834882857"): img(src="images/appstore.svg")
+          td: img(width="40",height="40",src="images/titanium.png")
+          td: a.block(href="https://play.google.com/store/apps/details?id=it.smc.liferayforums"): img(src="images/playstore.png",height="40")
+
+      +slide('penrose')
+        h2 <small>Liferay</small> Connector
+        h1 1.0
+        p Documentazione
+        p Esempi e Tutorials
+
+      +slide
+        img.product(src="images/liferay-screens.png")
+        h2 <small>Liferay</small> Screens
+        table.rows
+          tr
+            td.icon: i.fa.fa-apple
+            th.icon β
+            td Ottobre
+            td 2014
+          tr.futures
+            td.icon: i.fa.fa-android
+            th.icon β
+            td Dicembre
+            td 2014
+        p: small <i class="fa fa-code-fork"></i> liferay/liferay-screens
+
+      //+slide
+        iframe(src="//www.youtube.com/embed/DAhlr5VgEi8",frameborder="0",allowfullscreen)
+
+      +slide('penrose')
+        img.product(src="images/liferay-widgets.png")
+        h2 <small>Liferay</small> Widgets
+        table.rows
+          tr.futures
+            td.icon: img(src="images/titanium.png")
+            td Q2
+            td 2015
+
+      +slide
+        h2 La Squadra
+        table.products
+          tr
+            td: img.product(src="images/liferay-mobile-sdk.png")
+            td: img.product(src="images/liferay-screens.png")
+            td: img.product(src="images/liferay-connector.png")
+            td: img.product(src="images/liferay-widgets.png")
+          tr
+            td(colspan=2) Liferay
+            td(colspan=2) SMC
+
+      +slide
+        h4.single-words Dove possiamo arrivare?
+
+      +slide
+        h1 Mobile
+
+      +slide
+        ul.columns-2
+          li Android
+          li iPhone
+          li iPad
+          li Windows Phone
+          li.low Blackberry
+          li.low Tizen
+
+      +slide('wearables')
+        h1 Wearables
+        p.copy Immagine © Yohan Marion
+
+      +slide
+        ul
+          li Android Wear
+          li <i class="fa fa-apple"></i>Watch
+          li.low Google Glass
+          li.low Android Auto
+          li.low Apple CarPlay
+
+      +slide
+        h1 Desktop
+
+      +slide
+        // https://github.com/breach/thrust
+        h2 Nativo
+        ul
+          li Liferay Mobile SDK (OS X)
+          li Liferay Nativity
+
+      +slide
+        h2 Cross Platform
+        h3 — con Liferay Connector —
+        ul
+          li Node Webkit
+          li Thrust
+
+      +slide('demo')
+        h4 Demo
+
+      +slide('tetris')
+        h1 Integrazioni
+        p.copy Immagine © Nintendo/ Bullet Proof Software
+
+      +slide
+        ul
+          li Command Line Interfaces
+          li Importatori
+          li Middlewares
+          li …
+
+      +slide('demo')
+        h4 Demo
+
+      +slide('spiderman')
+        br
+        br
+        br
+        br
+        br
+        br
+        p.copy Immagine © Marvel
+
+      +slide
+        h1 Beyond Web
+        h4 Oltre le catene del Web
+
+      +slide: h3 — ma —
+
+      +slide
+        h2 <small>Il nostro</small> potenziale
+        h3 — dipende da —
+        ul
+          li
+            | Copertura e qualità delle API
+            ul
+              li Liferay Portal
+              li plugins su MarketPlace <i class="fa warning fa-warning"></i>
+          li Accesso all’autenticazione
+          li Configurazione di sicurezza
+
+      +slide
+        h2 Liferay
+        h3 — as a —
+        h2 Platform
+
+      +slide
+        h2 API Coverage
+        ul
+          li Migliorata
+          li Semplificata
+          li Incoraggiata
+
+      +slide
+        h2 Autentication <small>providing</small>
+        p oAuth (?)
+        p: small In realtà il mezzo è secondario
+
+      +slide
+        img(src='images/sio.jpg')
+        p.copy Immagine © Simone “Sio” Albrigi
+
+      +slide('idea')
+        h4 Avere gli strumenti
+        h3 — non significa —
+        h4 sapere cosa creare
+
+      +slide
+        h4 Idea №1
+        p Una App mobile
+        h3 — per —
+        p un servizio che offro<br>attraverso un Portale
+
+      +slide
+        h4 Idea №2
+        p Una compagna mobile
+        h3 — per —
+        p un mio plugin nel<br>Market Place
+
+      +slide
+        h2.twitter: i.fa.fa-twitter
+        h1 #beyondweb
+
+      +slide
+        h4.low Grazie
+        h3 ﬁn
+        h4.low: .socials
+          span <i class="fa fa-github-alt"></i> yuchi
+          span <i class="fa fa-twitter"></i> _pier
+
+    script(src='build/build.js')
