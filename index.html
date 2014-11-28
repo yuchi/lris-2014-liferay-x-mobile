@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Liferay &times; Mobile</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h4>Pier Paolo <br> Ramon</h4>
+        <div id="logo"></div>
+        <h4>
+          <div class="socials"><span><i class="fa fa-github-alt"></i> yuchi</span><span><i class="fa fa-twitter"></i> _pier</span></div>
+        </h4>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--start" class="start undefined">
+        <h1>Liferay &times; Mobile</h1>
+      </section>
+      <section>
+        <h1>Déjà vu</h1>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--bruno" class="bruno undefined">
+        <h2>LRIS 2013</h2>
+      </section>
+      <section>
+        <h2>Recap</h2>
+        <ul>
+          <li>UX, UX, UX!</li>
+          <li>Nuove sfide</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--roadmap" class="roadmap undefined">
+        <h2>ROADMAP</h2>
+        <h3>Liferay Mobile SDK</h3>
+      </section>
+      <section>
+        <h2>Q1 2014</h2>
+        <table class="rows">
+          <tr>
+            <td class="icon"><img src="images/titanium.png"></td>
+            <th>Titanium SDK</th>
+            <td>SMC</td>
+          </tr>
+          <tr>
+            <td class="icon"><i class="fa fa-android"></i></td>
+            <th>Android</th>
+            <td>Liferay</td>
+          </tr>
+          <tr>
+            <td class="icon"><i class="fa fa-apple"></i></td>
+            <th>iOS</th>
+            <td>Liferay</td>
+          </tr>
+          <tr>
+            <td class="icon"><i class="fa fa-windows"></i></td>
+            <th>Windows</th>
+            <td>…</td>
+          </tr>
+        </table>
+      </section>
+      <section><img src="images/liferay-mobile-sdk.png" class="product">
+        <h2><small>Liferay</small> Mobile SDK</h2>
+        <table class="rows">
+          <tr>
+            <td class="icon"><i class="fa fa-android"></i><i class="fa fa-apple"></i></td>
+            <th class="icon">β</th>
+            <td>Gennaio</td>
+            <td>2014</td>
+          </tr>
+          <tr>
+            <td class="icon"><i class="fa fa-android"></i><i class="fa fa-apple"></i></td>
+            <th class="icon">GA</th>
+            <td>Marzo</td>
+            <td>2014</td>
+          </tr>
+          <tr class="futures">
+            <td class="icon"><i class="fa fa-windows"></i></td>
+            <th class="icon">···</th>
+            <td>Dicembre</td>
+            <td>2014</td>
+          </tr>
+        </table>
+        <p><small><i class="fa fa-code-fork"></i> liferay/liferay-mobile-sdk</small></p>
+      </section>
+      <!--
+      +slide
+        h2 <small>Autenticazione in</small> Java
+        pre: code.language-java.
+          Session session = new SessionImpl(
+            "http://10.0.2.2:8080",
+            "test@liferay.com", "test");
+            
+      +slide
+        h2 <small>Invocazione in</small> Java
+        pre: code.language-java.
+          MBCategoryService service =
+            new MBCategoryService(session);
+            
+          JSONArray categories =
+            service.getCategories(groupId, 0);
+            
+      +slide
+        h2 <small>Autenticazione in</small> Objective-C
+        pre: code.language-objectivec.
+          LRSession *session = [[LRSession alloc]
+            initWithServer:@"http://localhost:8080"
+                  username:@"test@liferay.com"
+                  password:@"test"];
+                  
+      +slide
+        h2 <small>Definizione in</small> Objective-C
+        pre: code.language-objectivec.
+          LRMBCategoryService_v62 *service =
+            [[LRMBCategoryService_v62 alloc]
+              initWithSession:session];
+              
+      +slide
+        h2 <small>Invocazione in</small> Objective-C
+        pre: code.language-objectivec.
+          NSError *error;
+          NSArray *entries = [service
+            getGroupEntriesWithGroupId: 1084
+                      parentCategoryId: 0
+                                 error: &error];
+                                 
+      -->
+      <section><img src="images/liferay-connector.png" class="product">
+        <h2><small>Liferay</small> Connector</h2>
+        <table class="rows">
+          <tr>
+            <td class="icon"><img src="images/titanium.png"><span>⬢</span></td>
+            <th class="icon">β</th>
+            <td>Marzo</td>
+            <td>2014</td>
+          </tr>
+          <tr>
+            <td class="icon"><img src="images/titanium.png"><span>⬢</span></td>
+            <th class="icon">0.6.3</th>
+            <td>Novembre</td>
+            <td>2014</td>
+          </tr>
+        </table>
+        <p><small><i class="fa fa-code-fork"></i> smclab/liferay-connector</small></p>
+      </section>
+      <section>
+        <h2><small>Autenticazione in</small>JavaScript</h2>
+        <pre><code class="language-javascript">liferay.authenticate(
+  "http://10.0.2.2:8080", {
+    login: "test@liferay.com",
+    password: "test"
+  }, function (err, session) { /*...*/ });
+  </code></pre>
+      </section>
+      <section>
+        <h2><small>Invocazione in</small>JavaScript</h2>
+        <pre><code class="language-javascript">session.invoke({
+  '/mbcategory/get-categories': {
+    'groupId': groupId,
+    'parentCategoryId': 0
+  }
+}, function (err, categories) { /*...*/ });
+</code></pre>
+      </section>
+      <section>
+        <h2>Promises</h2>
+        <pre><code class="language-javascript">session
+  .invoke({ /* ... */ })
+  .then(function (results) {
+    // On resolved values
+  });
+  </code></pre>
+      </section>
+      <section>
+        <h2>ES6 Coroutines <small>and destructuring</small></h2>
+        <pre><code class="language-javascript">import { authenticate }
+  from 'liferay-connector';
+let { invoke } = yield authenticate(
+  "http://10.0.2.2:8080", {
+    login: "test@liferay.com",
+    password: "test"
+  });
+  </code></pre>
+      </section>
+      <section>
+        <pre><code class="language-javascript">let categories = yield invoke({
+  '/mbcategory/get-categories': {
+    'groupId': groupId,
+    'parentCategoryId': 0
+  }
+});
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--overload" class="overload undefined">
+        <h2>C# async/await<br>in JavaScript</h2>
+      </section>
+      <section>
+        <div style="background-image:url('images/liferay-forums.png');" class="ios7-icon"></div>
+        <h2><small>Liferay.com</small> Forums</h2>
+        <table class="rows">
+          <tr>
+            <th>1.0</th>
+            <td>Giugno</td>
+            <td>2014</td>
+          </tr>
+          <tr>
+            <th>2.1</th>
+            <td>Novembre</td>
+            <td>2014</td>
+          </tr>
+        </table>
+        <table class="rows">
+          <tr>
+            <td><a href="https://itunes.apple.com/app/liferay.com-forums/id834882857" class="block"><img src="images/appstore.svg"></a></td>
+            <td><img width="40" height="40" src="images/titanium.png"></td>
+            <td><a href="https://play.google.com/store/apps/details?id=it.smc.liferayforums" class="block"><img src="images/playstore.png" height="40"></a></td>
+          </tr>
+        </table>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--penrose" class="penrose undefined">
+        <h2><small>Liferay</small> Connector</h2>
+        <h1>1.0</h1>
+        <p>Documentazione</p>
+        <p>Esempi e Tutorials</p>
+      </section>
+      <section><img src="images/liferay-screens.png" class="product">
+        <h2><small>Liferay</small> Screens</h2>
+        <table class="rows">
+          <tr>
+            <td class="icon"><i class="fa fa-apple"></i></td>
+            <th class="icon">β</th>
+            <td>Ottobre</td>
+            <td>2014</td>
+          </tr>
+          <tr class="futures">
+            <td class="icon"><i class="fa fa-android"></i></td>
+            <th class="icon">β</th>
+            <td>Dicembre</td>
+            <td>2014</td>
+          </tr>
+        </table>
+        <p><small><i class="fa fa-code-fork"></i> liferay/liferay-screens</small></p>
+      </section>
+      <!--+slide
+      iframe(src="//www.youtube.com/embed/DAhlr5VgEi8",frameborder="0",allowfullscreen)
+      
+      -->
+      <section data-bespoke-backdrop="backdrop backdrop--penrose" class="penrose undefined"><img src="images/liferay-widgets.png" class="product">
+        <h2><small>Liferay</small> Widgets</h2>
+        <table class="rows">
+          <tr class="futures">
+            <td class="icon"><img src="images/titanium.png"></td>
+            <td>Q2</td>
+            <td>2015</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h2>La Squadra</h2>
+        <table class="products">
+          <tr>
+            <td><img src="images/liferay-mobile-sdk.png" class="product"></td>
+            <td><img src="images/liferay-screens.png" class="product"></td>
+            <td><img src="images/liferay-connector.png" class="product"></td>
+            <td><img src="images/liferay-widgets.png" class="product"></td>
+          </tr>
+          <tr>
+            <td colspan="2">Liferay</td>
+            <td colspan="2">SMC</td>
+          </tr>
+        </table>
+      </section>
+      <section>
+        <h4 class="single-words">Dove possiamo arrivare?</h4>
+      </section>
+      <section>
+        <h1>Mobile</h1>
+      </section>
+      <section>
+        <ul class="columns-2">
+          <li>Android</li>
+          <li>iPhone</li>
+          <li>iPad</li>
+          <li>Windows Phone</li>
+          <li class="low">Blackberry</li>
+          <li class="low">Tizen</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--wearables" class="wearables undefined">
+        <h1>Wearables</h1>
+        <p class="copy">Immagine © Yohan Marion</p>
+      </section>
+      <section>
+        <ul>
+          <li>Android Wear</li>
+          <li><i class="fa fa-apple"></i>Watch</li>
+          <li class="low">Google Glass</li>
+          <li class="low">Android Auto</li>
+          <li class="low">Apple CarPlay</li>
+        </ul>
+      </section>
+      <section>
+        <h1>Desktop</h1>
+      </section>
+      <section>
+        <!-- https://github.com/breach/thrust-->
+        <h2>Nativo</h2>
+        <ul>
+          <li>Liferay Mobile SDK (OS X)</li>
+          <li>Liferay Nativity</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Cross Platform</h2>
+        <h3>— con Liferay Connector —</h3>
+        <ul>
+          <li>Node Webkit</li>
+          <li>Thrust</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--demo" class="demo undefined">
+        <h4>Demo</h4>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--tetris" class="tetris undefined">
+        <h1>Integrazioni</h1>
+        <p class="copy">Immagine © Nintendo/ Bullet Proof Software</p>
+      </section>
+      <section>
+        <ul>
+          <li>Command Line Interfaces</li>
+          <li>Importatori</li>
+          <li>Middlewares</li>
+          <li>…</li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--demo" class="demo undefined">
+        <h4>Demo</h4>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--spiderman" class="spiderman undefined"><br><br><br><br><br><br>
+        <p class="copy">Immagine © Marvel</p>
+      </section>
+      <section>
+        <h1>Beyond Web</h1>
+        <h4>Oltre le catene del Web</h4>
+      </section>
+      <section>
+        <h3>— ma —</h3>
+      </section>
+      <section>
+        <h2><small>Il nostro</small> potenziale</h2>
+        <h3>— dipende da —</h3>
+        <ul>
+          <li>Copertura e qualità delle API
+            <ul>
+              <li>Liferay Portal</li>
+              <li>plugins su MarketPlace <i class="fa warning fa-warning"></i></li>
+            </ul>
+          </li>
+          <li>Accesso all’autenticazione</li>
+          <li>Configurazione di sicurezza</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Liferay</h2>
+        <h3>— as a —</h3>
+        <h2>Platform</h2>
+      </section>
+      <section>
+        <h2>API Coverage</h2>
+        <ul>
+          <li>Migliorata</li>
+          <li>Semplificata</li>
+          <li>Incoraggiata</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Autentication <small>providing</small></h2>
+        <p>oAuth (?)</p>
+        <p><small>In realtà il mezzo è secondario</small></p>
+      </section>
+      <section><img src="images/sio.jpg">
+        <p class="copy">Immagine © Simone “Sio” Albrigi</p>
+      </section>
+      <section data-bespoke-backdrop="backdrop backdrop--idea" class="idea undefined">
+        <h4>Avere gli strumenti</h4>
+        <h3>— non significa —</h3>
+        <h4>sapere cosa creare</h4>
+      </section>
+      <section>
+        <h4>Idea №1</h4>
+        <p>Una App mobile</p>
+        <h3>— per —</h3>
+        <p>un servizio che offro<br>attraverso un Portale</p>
+      </section>
+      <section>
+        <h4>Idea №2</h4>
+        <p>Una compagna mobile</p>
+        <h3>— per —</h3>
+        <p>un mio plugin nel<br>Market Place</p>
+      </section>
+      <section>
+        <h2 class="twitter"><i class="fa fa-twitter"></i></h2>
+        <h1>#beyondweb</h1>
+      </section>
+      <section>
+        <h4 class="low">Grazie</h4>
+        <h3>ﬁn</h3>
+        <h4 class="low">
+          <div class="socials"><span><i class="fa fa-github-alt"></i> yuchi</span><span><i class="fa fa-twitter"></i> _pier</span></div>
+        </h4>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
