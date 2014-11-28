@@ -85,6 +85,7 @@ gulp.task('clean:images', function() {
 
 gulp.task('connect', ['build'], function(done) {
   connect.server({
+    port: 4444,
     root: 'dist',
     livereload: true,
     middleware: function (connect) {
@@ -94,7 +95,7 @@ gulp.task('connect', ['build'], function(done) {
     }
   });
 
-  opn('http://localhost:8080', done);
+  opn('http://localhost:4444', done);
 });
 
 gulp.task('watch', function() {
